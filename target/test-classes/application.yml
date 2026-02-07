@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: tyse-scrutiny-micro-notification-test
+  cloud:
+    consul:
+      enabled: false
+      discovery:
+        enabled: false
+      config:
+        enabled: false
+    stream:
+      function:
+        definition:
+  mail:
+    host: localhost
+    port: 1025
+  thymeleaf:
+    prefix: classpath:/templates/
+    cache: false
+
+notification:
+  anomaly-alert:
+    default-recipients:
+      - test@example.com
+    minimum-severity: LOW
+  base-url: http://localhost:8080
+  from: test@tyse-scrutiny.com
+  whatsapp:
+    enabled: false
+  sms:
+    enabled: false

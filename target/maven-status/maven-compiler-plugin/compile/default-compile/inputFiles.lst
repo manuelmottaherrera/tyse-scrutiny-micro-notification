@@ -1,0 +1,14 @@
+/home/manuel-motta/repos/tyse/tyse-scrutiny-micro-notification/src/main/java/com/tyse/scrutiny/micro/notification/TyseScrutinyMicroNotificationApp.java
+/home/manuel-motta/repos/tyse/tyse-scrutiny-micro-notification/src/main/java/com/tyse/scrutiny/micro/notification/channel/EmailNotificationChannel.java
+/home/manuel-motta/repos/tyse/tyse-scrutiny-micro-notification/src/main/java/com/tyse/scrutiny/micro/notification/channel/NotificationChannelInterface.java
+/home/manuel-motta/repos/tyse/tyse-scrutiny-micro-notification/src/main/java/com/tyse/scrutiny/micro/notification/channel/SmsNotificationChannel.java
+/home/manuel-motta/repos/tyse/tyse-scrutiny-micro-notification/src/main/java/com/tyse/scrutiny/micro/notification/channel/WhatsAppNotificationChannel.java
+/home/manuel-motta/repos/tyse/tyse-scrutiny-micro-notification/src/main/java/com/tyse/scrutiny/micro/notification/consumer/AnomalyNotificationConsumer.java
+/home/manuel-motta/repos/tyse/tyse-scrutiny-micro-notification/src/main/java/com/tyse/scrutiny/micro/notification/consumer/NotificationRequestConsumer.java
+/home/manuel-motta/repos/tyse/tyse-scrutiny-micro-notification/src/main/java/com/tyse/scrutiny/micro/notification/model/AnomalyEvent.java
+/home/manuel-motta/repos/tyse/tyse-scrutiny-micro-notification/src/main/java/com/tyse/scrutiny/micro/notification/model/NotificationChannel.java
+/home/manuel-motta/repos/tyse/tyse-scrutiny-micro-notification/src/main/java/com/tyse/scrutiny/micro/notification/model/NotificationRequest.java
+/home/manuel-motta/repos/tyse/tyse-scrutiny-micro-notification/src/main/java/com/tyse/scrutiny/micro/notification/model/NotificationType.java
+/home/manuel-motta/repos/tyse/tyse-scrutiny-micro-notification/src/main/java/com/tyse/scrutiny/micro/notification/service/NotificationDispatcherService.java
+/home/manuel-motta/repos/tyse/tyse-scrutiny-micro-notification/src/main/java/com/tyse/scrutiny/micro/notification/service/TemplateService.java
+/home/manuel-motta/repos/tyse/tyse-scrutiny-micro-notification/src/main/java/com/tyse/scrutiny/micro/notification/web/NotificationResource.java

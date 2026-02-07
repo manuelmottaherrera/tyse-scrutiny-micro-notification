@@ -1,0 +1,6 @@
+com/tyse/scrutiny/micro/notification/web/NotificationResourceTest.class
+com/tyse/scrutiny/micro/notification/consumer/NotificationRequestConsumerTest.class
+com/tyse/scrutiny/micro/notification/consumer/AnomalyNotificationConsumerTest.class
+com/tyse/scrutiny/micro/notification/service/TemplateServiceTest.class
+com/tyse/scrutiny/micro/notification/channel/EmailNotificationChannelTest.class
+com/tyse/scrutiny/micro/notification/service/NotificationDispatcherServiceTest.class
