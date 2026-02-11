@@ -4,6 +4,7 @@ import com.tyse.scrutiny.micro.notification.channel.EmailNotificationChannel;
 import com.tyse.scrutiny.micro.notification.channel.NotificationChannelInterface;
 import com.tyse.scrutiny.micro.notification.channel.SmsNotificationChannel;
 import com.tyse.scrutiny.micro.notification.channel.WhatsAppNotificationChannel;
+import com.tyse.scrutiny.micro.notification.config.NotificationProperties;
 import com.tyse.scrutiny.micro.notification.model.AnomalyEvent;
 import com.tyse.scrutiny.micro.notification.model.NotificationChannel;
 import com.tyse.scrutiny.micro.notification.model.NotificationRequest;
@@ -15,7 +16,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
-import org.springframework.test.util.ReflectionTestUtils;
 import reactor.core.publisher.Mono;
 
 import java.time.Instant;
@@ -40,16 +40,18 @@ class NotificationDispatcherServiceTest {
     private SmsNotificationChannel smsChannel;
 
     private NotificationDispatcherService service;
+    private NotificationProperties properties;
 
     @BeforeEach
     void setUp() {
-        List<NotificationChannelInterface> channels = List.of(emailChannel, whatsAppChannel, smsChannel);
-        service = new NotificationDispatcherService(channels);
+        // Configure properties
+        properties = new NotificationProperties();
+        properties.getAnomalyAlert().setDefaultRecipients(List.of("abogado@test.com"));
+        properties.getAnomalyAlert().setMinimumSeverity("MEDIUM");
+        properties.setBaseUrl("http://localhost:8080");
 
-        // Set test values via reflection
-        ReflectionTestUtils.setField(service, "defaultAnomalyRecipients", List.of("abogado@test.com"));
-        ReflectionTestUtils.setField(service, "minimumSeverity", "MEDIUM");
-        ReflectionTestUtils.setField(service, "baseUrl", "http://localhost:8080");
+        List<NotificationChannelInterface> channels = List.of(emailChannel, whatsAppChannel, smsChannel);
+        service = new NotificationDispatcherService(channels, properties);
 
         // Configure channel types
         when(emailChannel.getChannelType()).thenReturn(NotificationChannel.EMAIL);

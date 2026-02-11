@@ -1,13 +1,14 @@
 package com.tyse.scrutiny.micro.notification.service;
 
 import com.tyse.scrutiny.micro.notification.channel.NotificationChannelInterface;
+import com.tyse.scrutiny.micro.notification.config.NotificationProperties;
 import com.tyse.scrutiny.micro.notification.model.AnomalyEvent;
 import com.tyse.scrutiny.micro.notification.model.NotificationChannel;
 import com.tyse.scrutiny.micro.notification.model.NotificationRequest;
 import com.tyse.scrutiny.micro.notification.model.NotificationType;
+import jakarta.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -25,33 +26,42 @@ public class NotificationDispatcherService {
     private static final Logger LOG = LoggerFactory.getLogger(NotificationDispatcherService.class);
 
     private final List<NotificationChannelInterface> channels;
+    private final NotificationProperties properties;
 
-    @Value("${notification.anomaly-alert.default-recipients:}")
-    private List<String> defaultAnomalyRecipients;
-
-    @Value("${notification.anomaly-alert.minimum-severity:MEDIUM}")
-    private String minimumSeverity;
-
-    @Value("${notification.base-url:http://localhost:8080}")
-    private String baseUrl;
-
-    public NotificationDispatcherService(List<NotificationChannelInterface> channels) {
+    public NotificationDispatcherService(List<NotificationChannelInterface> channels, NotificationProperties properties) {
         this.channels = channels;
+        this.properties = properties;
+    }
+
+    @PostConstruct
+    public void init() {
+        LOG.info("NotificationDispatcherService initialized with {} anomaly recipients: {}",
+            properties.getAnomalyAlert().getDefaultRecipients().size(),
+            properties.getAnomalyAlert().getDefaultRecipients());
     }
 
     /**
      * Send an anomaly alert notification.
      */
     public Mono<Void> sendAnomalyAlert(AnomalyEvent event) {
+        List<String> recipients = properties.getAnomalyAlert().getDefaultRecipients();
+        LOG.info("sendAnomalyAlert called for anomaly: {}, recipients configured: {}",
+            event.anomalyId(), recipients);
+
         if (!shouldSendAnomaly(event)) {
             LOG.debug("Skipping anomaly notification for {} - below minimum severity", event.anomalyId());
+            return Mono.empty();
+        }
+
+        if (recipients == null || recipients.isEmpty()) {
+            LOG.warn("No default anomaly recipients configured! Check notification.anomaly-alert.default-recipients");
             return Mono.empty();
         }
 
         Map<String, Object> templateData = buildAnomalyTemplateData(event);
         String subject = buildAnomalySubject(event);
 
-        return Flux.fromIterable(defaultAnomalyRecipients)
+        return Flux.fromIterable(recipients)
             .flatMap(recipient -> sendToChannel(
                 NotificationChannel.EMAIL,
                 recipient,
@@ -94,7 +104,7 @@ public class NotificationDispatcherService {
     private boolean shouldSendAnomaly(AnomalyEvent event) {
         List<String> severityOrder = List.of("LOW", "MEDIUM", "HIGH", "CRITICAL");
         int eventIndex = severityOrder.indexOf(event.severity());
-        int minIndex = severityOrder.indexOf(minimumSeverity);
+        int minIndex = severityOrder.indexOf(properties.getAnomalyAlert().getMinimumSeverity());
         return eventIndex >= minIndex;
     }
 
@@ -118,8 +128,8 @@ public class NotificationDispatcherService {
         data.put("scrutinyDate", event.scrutinyDate());
         data.put("electionProcessName", event.electionProcessName());
         data.put("detectedAt", event.detectedAt());
-        data.put("baseUrl", baseUrl);
-        data.put("anomalyUrl", baseUrl + "/anomalies/" + event.anomalyId());
+        data.put("baseUrl", properties.getBaseUrl());
+        data.put("anomalyUrl", properties.getBaseUrl() + "/anomalies/" + event.anomalyId());
         return data;
     }
 
