@@ -1,6 +1,0 @@
-/home/manuel-motta/repos/tyse/tyse-scrutiny-micro-notification/src/test/java/com/tyse/scrutiny/micro/notification/channel/EmailNotificationChannelTest.java
-/home/manuel-motta/repos/tyse/tyse-scrutiny-micro-notification/src/test/java/com/tyse/scrutiny/micro/notification/consumer/AnomalyNotificationConsumerTest.java
-/home/manuel-motta/repos/tyse/tyse-scrutiny-micro-notification/src/test/java/com/tyse/scrutiny/micro/notification/consumer/NotificationRequestConsumerTest.java
-/home/manuel-motta/repos/tyse/tyse-scrutiny-micro-notification/src/test/java/com/tyse/scrutiny/micro/notification/service/NotificationDispatcherServiceTest.java
-/home/manuel-motta/repos/tyse/tyse-scrutiny-micro-notification/src/test/java/com/tyse/scrutiny/micro/notification/service/TemplateServiceTest.java
-/home/manuel-motta/repos/tyse/tyse-scrutiny-micro-notification/src/test/java/com/tyse/scrutiny/micro/notification/web/NotificationResourceTest.java
