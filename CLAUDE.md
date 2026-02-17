@@ -37,7 +37,7 @@ mvn spring-boot:run
 - Kafka corriendo en localhost:9092
 - Consul corriendo en localhost:8500
 - MailHog (o SMTP) en localhost:1025
-- Todos disponibles en tyse-infrastructure
+- Todos disponibles en tyse-scrutiny-infrastructure
 
 ### Building
 
@@ -126,4 +126,4 @@ src/main/java/com/tyse/scrutiny/micro/notification/
 1. **Stateless** - No tiene base de datos propia
 2. **Templates Thymeleaf** - Los emails usan Thymeleaf con CSS inline
 3. **Severidad configurable** - Solo envía alertas >= minimum-severity
-4. **MailHog en dev** - Usa MailHog de tyse-infrastructure en desarrollo
+4. **MailHog en dev** - Usa MailHog de tyse-scrutiny-infrastructure en desarrollo
