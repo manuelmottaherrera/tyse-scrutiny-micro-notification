@@ -1,0 +1,10 @@
+ALERTA TYSE SCRUTINY
+
+Anomalía [(${severity})] detectada.
+Tipo: [(${type})]
+Mesa: [(${table})]
+Divipol: [(${divipolKey})]
+[# th:if="${candidateFirstName}"]Candidato: [(${candidateFirstName})] [(${candidateLastName})][/]
+[# th:if="${precountVotes != null}"]Votos: [(${precountVotes})] -> [(${scrutinyVotes})] (Dif: [(${difference})])[/]
+
+Ver: [(${anomalyUrl})]

@@ -12,11 +12,16 @@ import java.util.List;
 public class NotificationProperties {
 
     private final AnomalyAlert anomalyAlert = new AnomalyAlert();
+    private final Twilio twilio = new Twilio();
     private String baseUrl = "http://localhost:8080";
     private String from = "no-reply@tyse-scrutiny.com";
 
     public AnomalyAlert getAnomalyAlert() {
         return anomalyAlert;
+    }
+
+    public Twilio getTwilio() {
+        return twilio;
     }
 
     public String getBaseUrl() {
@@ -53,6 +58,79 @@ public class NotificationProperties {
 
         public void setMinimumSeverity(String minimumSeverity) {
             this.minimumSeverity = minimumSeverity;
+        }
+    }
+
+    public static class Twilio {
+        private String accountSid = "";
+        private String authToken = "";
+        private final WhatsApp whatsApp = new WhatsApp();
+        private final Sms sms = new Sms();
+
+        public String getAccountSid() {
+            return accountSid;
+        }
+
+        public void setAccountSid(String accountSid) {
+            this.accountSid = accountSid;
+        }
+
+        public String getAuthToken() {
+            return authToken;
+        }
+
+        public void setAuthToken(String authToken) {
+            this.authToken = authToken;
+        }
+
+        public WhatsApp getWhatsApp() {
+            return whatsApp;
+        }
+
+        public Sms getSms() {
+            return sms;
+        }
+
+        public static class WhatsApp {
+            private boolean enabled = false;
+            private String fromNumber = "";
+
+            public boolean isEnabled() {
+                return enabled;
+            }
+
+            public void setEnabled(boolean enabled) {
+                this.enabled = enabled;
+            }
+
+            public String getFromNumber() {
+                return fromNumber;
+            }
+
+            public void setFromNumber(String fromNumber) {
+                this.fromNumber = fromNumber;
+            }
+        }
+
+        public static class Sms {
+            private boolean enabled = false;
+            private String fromNumber = "";
+
+            public boolean isEnabled() {
+                return enabled;
+            }
+
+            public void setEnabled(boolean enabled) {
+                this.enabled = enabled;
+            }
+
+            public String getFromNumber() {
+                return fromNumber;
+            }
+
+            public void setFromNumber(String fromNumber) {
+                this.fromNumber = fromNumber;
+            }
         }
     }
 }

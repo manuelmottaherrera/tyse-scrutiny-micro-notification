@@ -1,0 +1,8 @@
+TYSE SCRUTINY
+
+[(${title})]
+
+[(${message})]
+[# th:if="${actionUrl}"]
+Ver más: [(${actionUrl})]
+[/]

@@ -1,0 +1,8 @@
+TYSE SCRUTINY
+
+Hola [(${user.firstName})],
+
+Tu cuenta ha sido creada. Actívala en:
+[(${activationUrl})]
+
+El enlace expira en 24 horas.

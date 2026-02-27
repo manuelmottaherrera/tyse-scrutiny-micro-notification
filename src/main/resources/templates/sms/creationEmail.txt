@@ -1,0 +1,9 @@
+TYSE SCRUTINY
+
+Hola [(${user.firstName})],
+
+Un administrador ha creado tu cuenta.
+Establece tu contraseña en:
+[(${resetUrl})]
+
+El enlace expira en 24 horas.
