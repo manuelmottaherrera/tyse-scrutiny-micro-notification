@@ -1,0 +1,27 @@
+# ===================================================================
+# Spring Boot configuration for the "local-dev" profile.
+#
+# Ejecuta la app localmente conectada al servidor de desarrollo (192.168.0.58).
+#
+# Uso: ./mvnw -Dspring-boot.run.profiles=local-dev
+# ===================================================================
+
+logging:
+  level:
+    ROOT: INFO
+    com.tyse.scrutiny: DEBUG
+
+spring:
+  cloud:
+    consul:
+      host: 192.168.0.58
+      port: 8510
+      discovery:
+        prefer-ip-address: true
+    stream:
+      kafka:
+        binder:
+          brokers: 192.168.0.58:9102
+  mail:
+    host: 192.168.0.58
+    port: 1035
