@@ -1,0 +1,21 @@
+# ===================================================================
+# Spring Boot configuration for the "prod" profile.
+# ===================================================================
+
+logging:
+  level:
+    ROOT: INFO
+    com.tyse.scrutiny: INFO
+
+spring:
+  devtools:
+    restart:
+      enabled: false
+    livereload:
+      enabled: false
+
+management:
+  defaults:
+    metrics:
+      export:
+        enabled: true
