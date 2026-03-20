@@ -1,0 +1,33 @@
+# ===================================================================
+# Spring Boot configuration for the "docker-dev" profile.
+#
+# Ejecuta dentro de Docker Compose (docker-dev/).
+# ===================================================================
+
+spring:
+  docker:
+    compose:
+      enabled: false
+  devtools:
+    restart:
+      enabled: true
+      poll-interval: 2s
+      quiet-period: 1s
+  cloud:
+    consul:
+      host: consul
+      port: 8500
+      discovery:
+        prefer-ip-address: true
+    stream:
+      kafka:
+        binder:
+          brokers: kafka:29092
+  mail:
+    host: mailhog
+    port: 1025
+
+logging:
+  level:
+    ROOT: INFO
+    com.tyse.scrutiny: DEBUG
