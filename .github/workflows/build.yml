@@ -69,3 +69,12 @@ jobs:
             -Djib.to.auth.username=${{ github.actor }} \
             -Djib.to.auth.password=${{ secrets.GITHUB_TOKEN }} \
             -DskipTests --batch-mode
+
+      - name: Trigger dev deployment
+        if: github.event_name == 'workflow_run' && github.event.workflow_run.head_branch == 'develop'
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ secrets.DEPLOY_PAT }}
+          repository: manuelmottaherrera/tyse-scrutiny-infrastructure
+          event-type: deploy-dev
+          client-payload: '{"service": "notification", "source": "notification", "sha": "${{ github.sha }}"}'
