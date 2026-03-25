@@ -1,0 +1,10 @@
+# ===================================================================
+# Spring Cloud Consul Config bootstrap for the "docker-dev" profile.
+# Overrides consul host to use Docker Compose service name.
+# ===================================================================
+
+spring:
+  cloud:
+    consul:
+      host: consul
+      port: 8500
